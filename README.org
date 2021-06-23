@@ -1,0 +1,24 @@
+* chemtable.el
+
+Periodic table of elements.
+
+** Installation:
+   
+After installing the package (or copying it to your load-path), add this
+to your init file:
+
+#+begin_src emacs-lisp
+(require 'chemtable)
+#+end_src
+
+** Usage:
+   
+~M-x chemtable~ and click or RET on element.
+
+#+NAME: chemtable
+#+ATTR_ORG: :width 60
+#+ATTR_HTML: :width 60px
+[[file:./chemtable.png]]
+
+Please, email me your comments, bugs, improvements or opinions on this
+package to [[sergi.ruiz.trepat@gmail.com]].
