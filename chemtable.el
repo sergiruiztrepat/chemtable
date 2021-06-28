@@ -168,47 +168,40 @@ All data from: https://en.wikipedia.org/wiki/List_of_chemical_elements"))
     '((t :family "Monospace"))
     "Buffer-local face created by `chemtable'."
     :group 'chemtable)
-  
-(defface chemtable-button-face-red
-  ;; Copied from definition of `custom-button' in cus-edit.el
+
+(defface chemtable-element-face
   '((((type x w32 ns) (class color))
-     :box (:line-width 2 :style released-button)
-     :background "indian red" :foreground "black"))
+     :box (:line-width 2 :style released-button)))
+;;  '((t :inherit button))
+;;       :box (:line-width 2 :style released-button)))
+  "Basic face create by `chemtable'.")
+
+(defface chemtable-s-block-face
+  '((t :inherit (chemtable-element-face font-lock-keyword-face)))
   "Face for s-block button created by `chemtable'."
   :group 'chemtable)
 
-(defface chemtable-button-face-lightblue
-  ;; Copied from definition of `custom-button' in cus-edit.el
-  '((((type x w32 ns) (class color))
-     :box (:line-width 2 :style released-button)
-     :background "cyan" :foreground "black"))
+(defface chemtable-d-block-face
+  '((t :inherit (chemtable-element-face font-lock-type-face)))
   "Face for d-block button created by `chemtable'."
   :group 'chemtable)
 
-(defface chemtable-button-face-yellow
-  ;; Copied from definition of `custom-button' in cus-edit.el
-  '((((type x w32 ns) (class color))
-     :box (:line-width 2 :style released-button)
-     :background "gold" :foreground "black"))
-  "Face for p-block button created by `chemtable'."
+(defface chemtable-f-block-face
+  '((t :inherit (chemtable-element-face font-lock-doc-face)))
+  "Face for f-block button created by `chemtable'."
   :group 'chemtable)
 
-(defface chemtable-button-face-green
-  ;; Copied from definition of `custom-button' in cus-edit.el
-  '((((type x w32 ns) (class color))
-     :box (:line-width 2 :style released-button)
-     :background "spring green" :foreground "black"))
-  "Face for f-block button created by `chemtable'."
+(defface chemtable-p-block-face
+  '((t :inherit (chemtable-element-face font-lock-function-name-face)))
+  "Face for p-block button created by `chemtable'."
   :group 'chemtable)
 
 (defvar chemtable-default-background (face-attribute 'default :background)
   "Variable to take default background color.")
 
-(defface chemtable-button-face-nil
-  ;; Copied from definition of `custom-button' in cus-edit.el
-  '((((type x w32 ns) (class color))
-     :box (:line-width 2 :style released-button)
-     :background chemtable-default-background))
+(defface chemtable-nil-face
+  '((t :inherit (chemtable-element-face
+       :background chemtable-default-background)))
   "Face for nil button created by `chemtable'.
 Only to ensure alignment of table."
   :group 'chemtable)
@@ -253,28 +246,28 @@ Abundance in Earth's crust: %s mg/Kg"
 ;;;
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "H "))
-		   :button-face 'chemtable-button-face-red "H ")
+		   :button-face 'chemtable-s-block-face "H ")
     (insert " ")
     
     (dotimes (_ 16)
       (widget-create 'push-button :notify (lambda (&rest _ignore)
 					    (chemtable-show-data nil))
-		     :button-face 'chemtable-button-face-nil "  ")
+		     :button-face 'chemtable-nil-face "  ")
       (insert " "))
 
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "He"))
-		   :button-face 'chemtable-button-face-red "He")
+		   :button-face 'chemtable-s-block-face "He")
     
     (insert "\n" )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Li"))
-		   :button-face 'chemtable-button-face-red "Li")
+		   :button-face 'chemtable-s-block-face "Li")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Be"))
-		   :button-face 'chemtable-button-face-red "Be")
+		   :button-face 'chemtable-s-block-face "Be")
     
     (insert " " )
     (dotimes (_ 10)
@@ -285,42 +278,42 @@ Abundance in Earth's crust: %s mg/Kg"
     
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "B "))
-		   :button-face 'chemtable-button-face-yellow "B ")
+		   :button-face 'chemtable-p-block-face "B ")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "C "))
-		   :button-face 'chemtable-button-face-yellow "C ")
+		   :button-face 'chemtable-p-block-face "C ")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "N "))
-		   :button-face 'chemtable-button-face-yellow "N ")
+		   :button-face 'chemtable-p-block-face "N ")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "O "))
-		   :button-face 'chemtable-button-face-yellow "O ")
+		   :button-face 'chemtable-p-block-face "O ")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "F "))
-		   :button-face 'chemtable-button-face-yellow "F ")
+		   :button-face 'chemtable-p-block-face "F ")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Ne"))
-		   :button-face 'chemtable-button-face-yellow "Ne")
+		   :button-face 'chemtable-p-block-face "Ne")
     
     (insert "\n" )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Na"))
-		   :button-face 'chemtable-button-face-red "Na")
+		   :button-face 'chemtable-s-block-face "Na")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Mg"))
-		   :button-face 'chemtable-button-face-red "Mg")
+		   :button-face 'chemtable-s-block-face "Mg")
 
     (insert " " )
     (dotimes (_ 10)
@@ -331,392 +324,392 @@ Abundance in Earth's crust: %s mg/Kg"
     
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Al"))
-		   :button-face 'chemtable-button-face-yellow "Al")
+		   :button-face 'chemtable-p-block-face "Al")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Si"))
-		   :button-face 'chemtable-button-face-yellow "Si")
+		   :button-face 'chemtable-p-block-face "Si")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "P "))
-		   :button-face 'chemtable-button-face-yellow "P ")
+		   :button-face 'chemtable-p-block-face "P ")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "S "))
-		   :button-face 'chemtable-button-face-yellow "S ")
+		   :button-face 'chemtable-p-block-face "S ")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Cl"))
-		   :button-face 'chemtable-button-face-yellow "Cl")
+		   :button-face 'chemtable-p-block-face "Cl")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Ar"))
-		   :button-face 'chemtable-button-face-yellow "Ar")
+		   :button-face 'chemtable-p-block-face "Ar")
     
     (insert "\n" )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "K "))
-		   :button-face 'chemtable-button-face-red "K ")
+		   :button-face 'chemtable-s-block-face "K ")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Ca"))
-		   :button-face 'chemtable-button-face-red "Ca")
+		   :button-face 'chemtable-s-block-face "Ca")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Sc"))
-		   :button-face 'chemtable-button-face-lightblue "Sc")
+		   :button-face 'chemtable-d-block-face "Sc")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Ti"))
-		   :button-face 'chemtable-button-face-lightblue "Ti")
+		   :button-face 'chemtable-d-block-face "Ti")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "V "))
-		   :button-face 'chemtable-button-face-lightblue "V ")
+		   :button-face 'chemtable-d-block-face "V ")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Cr"))
-		   :button-face 'chemtable-button-face-lightblue "Cr")
+		   :button-face 'chemtable-d-block-face "Cr")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Mn"))
-		   :button-face 'chemtable-button-face-lightblue "Mn")
+		   :button-face 'chemtable-d-block-face "Mn")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Fe"))
-		   :button-face 'chemtable-button-face-lightblue "Fe")
+		   :button-face 'chemtable-d-block-face "Fe")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Co"))
-		   :button-face 'chemtable-button-face-lightblue "Co")
+		   :button-face 'chemtable-d-block-face "Co")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Ni"))
-		   :button-face 'chemtable-button-face-lightblue "Ni")
+		   :button-face 'chemtable-d-block-face "Ni")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Cu"))
-		   :button-face 'chemtable-button-face-lightblue "Cu")
+		   :button-face 'chemtable-d-block-face "Cu")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Zn"))
-		   :button-face 'chemtable-button-face-lightblue "Zn")
+		   :button-face 'chemtable-d-block-face "Zn")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Ga"))
-		   :button-face 'chemtable-button-face-yellow "Ga")
+		   :button-face 'chemtable-p-block-face "Ga")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Ge"))
-		   :button-face 'chemtable-button-face-yellow "Ge")
+		   :button-face 'chemtable-p-block-face "Ge")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "As"))
-		   :button-face 'chemtable-button-face-yellow "As")
+		   :button-face 'chemtable-p-block-face "As")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Se"))
-		   :button-face 'chemtable-button-face-yellow "Se")
+		   :button-face 'chemtable-p-block-face "Se")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Br"))
-		   :button-face 'chemtable-button-face-yellow "Br")
+		   :button-face 'chemtable-p-block-face "Br")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Kr"))
-		   :button-face 'chemtable-button-face-yellow "Kr")
+		   :button-face 'chemtable-p-block-face "Kr")
     
     (insert "\n" )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Rb"))
-		   :button-face 'chemtable-button-face-red "Rb")
+		   :button-face 'chemtable-s-block-face "Rb")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Sr"))
-		   :button-face 'chemtable-button-face-red "Sr")
+		   :button-face 'chemtable-s-block-face "Sr")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Y "))
-		   :button-face 'chemtable-button-face-lightblue "Y ")
+		   :button-face 'chemtable-d-block-face "Y ")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Zr"))
-		   :button-face 'chemtable-button-face-lightblue "Zr")
+		   :button-face 'chemtable-d-block-face "Zr")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Nb"))
-		   :button-face 'chemtable-button-face-lightblue "Nb")
+		   :button-face 'chemtable-d-block-face "Nb")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Mo"))
-		   :button-face 'chemtable-button-face-lightblue "Mo")
+		   :button-face 'chemtable-d-block-face "Mo")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Tc"))
-		   :button-face 'chemtable-button-face-lightblue "Tc")
+		   :button-face 'chemtable-d-block-face "Tc")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Ru"))
-		   :button-face 'chemtable-button-face-lightblue "Ru")
+		   :button-face 'chemtable-d-block-face "Ru")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Rh"))
-		   :button-face 'chemtable-button-face-lightblue "Rh")
+		   :button-face 'chemtable-d-block-face "Rh")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Pd"))
-		   :button-face 'chemtable-button-face-lightblue "Pd")
+		   :button-face 'chemtable-d-block-face "Pd")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Ag"))
-		   :button-face 'chemtable-button-face-lightblue "Ag")
+		   :button-face 'chemtable-d-block-face "Ag")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Cd"))
-		   :button-face 'chemtable-button-face-lightblue "Cd")
+		   :button-face 'chemtable-d-block-face "Cd")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "In"))
-		   :button-face 'chemtable-button-face-yellow "In")
+		   :button-face 'chemtable-p-block-face "In")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Sn"))
-		   :button-face 'chemtable-button-face-yellow "Sn")
+		   :button-face 'chemtable-p-block-face "Sn")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Sb"))
-		   :button-face 'chemtable-button-face-yellow "Sb")
+		   :button-face 'chemtable-p-block-face "Sb")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Te"))
-		   :button-face 'chemtable-button-face-yellow "Te")
+		   :button-face 'chemtable-p-block-face "Te")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "I "))
-		   :button-face 'chemtable-button-face-yellow "I ")
+		   :button-face 'chemtable-p-block-face "I ")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Xe"))
-		   :button-face 'chemtable-button-face-yellow "Xe")
+		   :button-face 'chemtable-p-block-face "Xe")
     
     (insert "\n" )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Cs"))
-		   :button-face 'chemtable-button-face-red "Cs")
+		   :button-face 'chemtable-s-block-face "Cs")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Ba"))
-		   :button-face 'chemtable-button-face-red "Ba")
+		   :button-face 'chemtable-s-block-face "Ba")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Lu"))
-		   :button-face 'chemtable-button-face-lightblue "Lu")
+		   :button-face 'chemtable-d-block-face "Lu")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Hf"))
-		   :button-face 'chemtable-button-face-lightblue "Hf")
+		   :button-face 'chemtable-d-block-face "Hf")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Ta"))
-		   :button-face 'chemtable-button-face-lightblue "Ta")
+		   :button-face 'chemtable-d-block-face "Ta")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "W "))
-		   :button-face 'chemtable-button-face-lightblue "W ")
+		   :button-face 'chemtable-d-block-face "W ")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Re"))
-		   :button-face 'chemtable-button-face-lightblue "Re")
+		   :button-face 'chemtable-d-block-face "Re")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Os"))
-		   :button-face 'chemtable-button-face-lightblue "Os")
+		   :button-face 'chemtable-d-block-face "Os")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Ir"))
-		   :button-face 'chemtable-button-face-lightblue "Ir")
+		   :button-face 'chemtable-d-block-face "Ir")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Pt"))
-		   :button-face 'chemtable-button-face-lightblue "Pt")
+		   :button-face 'chemtable-d-block-face "Pt")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Au"))
-		   :button-face 'chemtable-button-face-lightblue "Au")
+		   :button-face 'chemtable-d-block-face "Au")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Hg"))
-		   :button-face 'chemtable-button-face-lightblue "Hg")
+		   :button-face 'chemtable-d-block-face "Hg")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Tl"))
-		   :button-face 'chemtable-button-face-yellow "Tl")
+		   :button-face 'chemtable-p-block-face "Tl")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Pb"))
-		   :button-face 'chemtable-button-face-yellow "Pb")
+		   :button-face 'chemtable-p-block-face "Pb")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Bi"))
-		   :button-face 'chemtable-button-face-yellow "Bi")
+		   :button-face 'chemtable-p-block-face "Bi")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Po"))
-		   :button-face 'chemtable-button-face-yellow "Po")
+		   :button-face 'chemtable-p-block-face "Po")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "At"))
-		   :button-face 'chemtable-button-face-yellow "At")
+		   :button-face 'chemtable-p-block-face "At")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Rn"))
-		   :button-face 'chemtable-button-face-yellow "Rn")
+		   :button-face 'chemtable-p-block-face "Rn")
     
     (insert "\n" )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Fr"))
-		   :button-face 'chemtable-button-face-red "Fr")
+		   :button-face 'chemtable-s-block-face "Fr")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Ra"))
-		   :button-face 'chemtable-button-face-red "Ra")
+		   :button-face 'chemtable-s-block-face "Ra")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Lr"))
-		   :button-face 'chemtable-button-face-lightblue "Lr")
+		   :button-face 'chemtable-d-block-face "Lr")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Rf"))
-		   :button-face 'chemtable-button-face-lightblue "Rf")
+		   :button-face 'chemtable-d-block-face "Rf")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Db"))
-		   :button-face 'chemtable-button-face-lightblue "Db")
+		   :button-face 'chemtable-d-block-face "Db")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Sg"))
-		   :button-face 'chemtable-button-face-lightblue "Sg")
+		   :button-face 'chemtable-d-block-face "Sg")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Bh"))
-		   :button-face 'chemtable-button-face-lightblue "Bh")
+		   :button-face 'chemtable-d-block-face "Bh")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Hs"))
-		   :button-face 'chemtable-button-face-lightblue "Hs")
+		   :button-face 'chemtable-d-block-face "Hs")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Mt"))
-		   :button-face 'chemtable-button-face-lightblue "Mt")
+		   :button-face 'chemtable-d-block-face "Mt")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Ds"))
-		   :button-face 'chemtable-button-face-lightblue "Ds")
+		   :button-face 'chemtable-d-block-face "Ds")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Rg"))
-		   :button-face 'chemtable-button-face-lightblue "Rg")
+		   :button-face 'chemtable-d-block-face "Rg")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Cn"))
-		   :button-face 'chemtable-button-face-lightblue "Cn")
+		   :button-face 'chemtable-d-block-face "Cn")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Nh"))
-		   :button-face 'chemtable-button-face-yellow "Nh")
+		   :button-face 'chemtable-p-block-face "Nh")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Fl"))
-		   :button-face 'chemtable-button-face-yellow "Fl")
+		   :button-face 'chemtable-p-block-face "Fl")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Mc"))
-		   :button-face 'chemtable-button-face-yellow "Mc")
+		   :button-face 'chemtable-p-block-face "Mc")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Lv"))
-		   :button-face 'chemtable-button-face-yellow "Lv")
+		   :button-face 'chemtable-p-block-face "Lv")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Ts"))
-		   :button-face 'chemtable-button-face-yellow "Ts")
+		   :button-face 'chemtable-p-block-face "Ts")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Og"))
-		   :button-face 'chemtable-button-face-yellow "Og")
+		   :button-face 'chemtable-p-block-face "Og")
     (insert "\n" )
     (dotimes (_ 2)
       (widget-create 'push-button :notify (lambda (&rest _ignore)
@@ -725,72 +718,72 @@ Abundance in Earth's crust: %s mg/Kg"
       (insert " "))
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "La"))
-		   :button-face 'chemtable-button-face-green "La")
+		   :button-face 'chemtable-f-block-face "La")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Ce"))
-		   :button-face 'chemtable-button-face-green "Ce")
+		   :button-face 'chemtable-f-block-face "Ce")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Pr"))
-		   :button-face 'chemtable-button-face-green "Pr")
+		   :button-face 'chemtable-f-block-face "Pr")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Nd"))
-		   :button-face 'chemtable-button-face-green "Nd")
+		   :button-face 'chemtable-f-block-face "Nd")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Pm"))
-		   :button-face 'chemtable-button-face-green "Pm")
+		   :button-face 'chemtable-f-block-face "Pm")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Sm"))
-		   :button-face 'chemtable-button-face-green "Sm")
+		   :button-face 'chemtable-f-block-face "Sm")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Eu"))
-		   :button-face 'chemtable-button-face-green "Eu")
+		   :button-face 'chemtable-f-block-face "Eu")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Gd"))
-		   :button-face 'chemtable-button-face-green "Gd")
+		   :button-face 'chemtable-f-block-face "Gd")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Tb"))
-		   :button-face 'chemtable-button-face-green "Tb")
+		   :button-face 'chemtable-f-block-face "Tb")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Dy"))
-		   :button-face 'chemtable-button-face-green "Dy")
+		   :button-face 'chemtable-f-block-face "Dy")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Ho"))
-		   :button-face 'chemtable-button-face-green "Ho")
+		   :button-face 'chemtable-f-block-face "Ho")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Er"))
-		   :button-face 'chemtable-button-face-green "Er")
+		   :button-face 'chemtable-f-block-face "Er")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Tm"))
-		   :button-face 'chemtable-button-face-green "Tm")
+		   :button-face 'chemtable-f-block-face "Tm")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Yb"))
-		   :button-face 'chemtable-button-face-green "Yb")
+		   :button-face 'chemtable-f-block-face "Yb")
     (insert " " )
     (dotimes (_ 2)
       (widget-create 'push-button :notify (lambda (&rest _ignore)
@@ -805,72 +798,72 @@ Abundance in Earth's crust: %s mg/Kg"
       (insert " "))
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Ac"))
-		   :button-face 'chemtable-button-face-green "Ac")
+		   :button-face 'chemtable-f-block-face "Ac")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Th"))
-		   :button-face 'chemtable-button-face-green "Th")
+		   :button-face 'chemtable-f-block-face "Th")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Pa"))
-		   :button-face 'chemtable-button-face-green "Pa")
+		   :button-face 'chemtable-f-block-face "Pa")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "U "))
-		   :button-face 'chemtable-button-face-green "U ")
+		   :button-face 'chemtable-f-block-face "U ")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Np"))
-		   :button-face 'chemtable-button-face-green "Np")
+		   :button-face 'chemtable-f-block-face "Np")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Pu"))
-		   :button-face 'chemtable-button-face-green "Pu")
+		   :button-face 'chemtable-f-block-face "Pu")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Am"))
-		   :button-face 'chemtable-button-face-green "Am")
+		   :button-face 'chemtable-f-block-face "Am")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Cm"))
-		   :button-face 'chemtable-button-face-green "Cm")
+		   :button-face 'chemtable-f-block-face "Cm")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Bk"))
-		   :button-face 'chemtable-button-face-green "Bk")
+		   :button-face 'chemtable-f-block-face "Bk")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Cf"))
-		   :button-face 'chemtable-button-face-green "Cf")
+		   :button-face 'chemtable-f-block-face "Cf")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Es"))
-		   :button-face 'chemtable-button-face-green "Es")
+		   :button-face 'chemtable-f-block-face "Es")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Fm"))
-		   :button-face 'chemtable-button-face-green "Fm")
+		   :button-face 'chemtable-f-block-face "Fm")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "Md"))
-		   :button-face 'chemtable-button-face-green "Md")
+		   :button-face 'chemtable-f-block-face "Md")
     
     (insert " " )
     (widget-create 'push-button :notify (lambda (&rest _ignore)
 					  (chemtable-show-data "No"))
-		   :button-face 'chemtable-button-face-green "No")
+		   :button-face 'chemtable-f-block-face "No")
     
     (insert " " )
         
@@ -880,6 +873,24 @@ Abundance in Earth's crust: %s mg/Kg"
 		     :button-face 'chemtable-button-face-nil "  ")
       (insert " "))
 
+    (insert "\n\n")
+    (widget-create 'push-button :notify (lambda (&rest _ignore)
+					  (chemtable-show-data nil))
+		   :button-face 'chemtable-s-block-face "S-block")
+    (insert "\n")
+    (widget-create 'push-button :notify (lambda (&rest _ignore)
+					  (chemtable-show-data nil))
+		   :button-face 'chemtable-p-block-face "P-block")
+    (insert "\n")
+    (widget-create 'push-button :notify (lambda (&rest _ignore)
+					  (chemtable-show-data nil))
+		   :button-face 'chemtable-d-block-face "D-block")
+    (insert "\n")
+    (widget-create 'push-button :notify (lambda (&rest _ignore)
+					  (chemtable-show-data nil))
+		   :button-face 'chemtable-f-block-face "F-block")
+    
+    
     (use-local-map widget-keymap)
     (widget-setup)
     (goto-char (point-min))))
