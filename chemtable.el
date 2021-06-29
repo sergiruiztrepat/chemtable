@@ -172,9 +172,8 @@ All data from: https://en.wikipedia.org/wiki/List_of_chemical_elements"))
 (defface chemtable-element-face
   '((((type x w32 ns) (class color))
      :box (:line-width 2 :style released-button)))
-;;  '((t :inherit button))
-;;       :box (:line-width 2 :style released-button)))
-  "Basic face create by `chemtable'.")
+  "Basic face create by `chemtable'."
+  :group 'chemtable)
 
 (defface chemtable-s-block-face
   '((t :inherit (chemtable-element-face font-lock-keyword-face)))
