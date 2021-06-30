@@ -274,7 +274,7 @@
 
 Symbol, atomic number, name, group, period, atomic weight, density,
 melting point, boiling point, specific heat capacity,
-electronegativity, abundance in Earth's crust.
+electronegativity, abundance in Earth's crust, origin, phase at r.t.
 
 All data from: https://en.wikipedia.org/wiki/List_of_chemical_elements"))
 
