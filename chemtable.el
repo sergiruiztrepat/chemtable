@@ -35,6 +35,8 @@
 
 (require 'widget)
 
+(eval-when-compile (require 'wid-edit))
+
 (defconst chemtable-data
 '(
   ("H " "1" "Hydrogen" "1" "1" "1.008" "0.00008988" "14.01" "20.28"
