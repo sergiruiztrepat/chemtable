@@ -21,4 +21,4 @@ to your init file:
 [[file:./chemtable.png]]
 
 Please, email me your comments, bugs, improvements or opinions on this
-package to [[sergi.ruiz.trepat@gmail.com]].
+package to [[sergi@aloe-associacio.org]]
